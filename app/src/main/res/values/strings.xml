@@ -1,0 +1,23 @@
+<resources>
+
+    <!-- 全局 -->
+    <string name="app_name">Store</string>
+
+    <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="navigation_drawer_close">关闭导航抽屉</string>
+    <string name="nav_settings">设置</string>
+
+    <!-- toolbar title -->
+    <string name="login">登录</string>
+
+
+    <!-- Exception -->
+    <string name="exception_illegal_param">参数非法异常</string>
+
+    <!-- 导航拦-->
+    <string name="login_or_register">登录or注册</string>
+    <string name="nav_book_shelf">本地在读</string>
+    <string name="nav_store">作品商店</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+</resources>
