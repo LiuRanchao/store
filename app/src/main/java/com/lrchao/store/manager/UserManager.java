@@ -19,7 +19,7 @@ public class UserManager {
     }
 
     public static UserManager get() {
-        synchronized (UserManager.sInstance) {
+        synchronized (UserManager.class) {
             if (sInstance == null) {
                 sInstance = new UserManager();
             }

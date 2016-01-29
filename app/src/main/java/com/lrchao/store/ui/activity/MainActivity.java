@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.lrchao.store.R;
 import com.lrchao.store.ui.fragment.BookShelfFragment;
-import com.lrchao.store.ui.fragment.MovieFragment;
+import com.lrchao.store.ui.fragment.movie.MovieFragment;
 import com.lrchao.store.ui.widget.NavigationHeaderView;
 
 import butterknife.Bind;

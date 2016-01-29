@@ -20,7 +20,6 @@ public abstract class RequestBase {
      */
     private Map<String, Object> mParams;
 
-
     public void setUrl(String url) {
         mUrl = url;
     }
@@ -40,7 +39,7 @@ public abstract class RequestBase {
     /**
      * 获取真正的url
      */
-    public abstract String getRealUrl ();
+    public abstract String getRealUrl();
 
     /**
      * 获取真正的参数

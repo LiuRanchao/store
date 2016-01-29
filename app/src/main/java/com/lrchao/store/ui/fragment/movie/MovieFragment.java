@@ -1,12 +1,16 @@
-package com.lrchao.store.ui.fragment;
+package com.lrchao.store.ui.fragment.movie;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.lrchao.store.R;
 import com.lrchao.store.data_provider.NetworkDataProvider;
 import com.lrchao.store.data_provider.user.UserDataProvider;
+import com.lrchao.store.service.RequestService;
 import com.lrchao.store.ui.activity.SettingsActivity;
+import com.lrchao.store.ui.fragment.BaseNetworkFragment;
 
 
 /**
@@ -42,4 +46,11 @@ public class MovieFragment extends BaseNetworkFragment {
     protected NetworkDataProvider initDataProvider() {
         return null;
     }
+
+    @Override
+    protected int getUIRequestAction() {
+        return RequestService.ACTION_DOUBAN_MOVIE_IN_THEATERS;
+    }
+
+
 }

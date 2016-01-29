@@ -1,8 +1,8 @@
 package com.lrchao.store.net;
 
 
-import com.lrchao.store.net.response.OnResponseListener;
-import com.lrchao.store.util.LogUtils;
+import com.lrchao.store.net.response.ResponseBase;
+import com.lrchao.store.net.resquest.RequestBase;
 
 import java.io.IOException;
 import java.util.Map;
@@ -20,101 +20,90 @@ import okhttp3.Response;
  */
 public class NetworkHelper {
 
-    /**
-     * Response
-     */
-    private OnResponseListener mOnResponseListener;
+    private static NetworkHelper sInstance;
 
     /**
-     * 请求队列
+     *
      */
-    //private RequestQueue mRequestQueue;
+    private OkHttpClient mOkHttpClient;
 
-    private OkHttpClient mClient;
-
-    public void setOnResponseListener(OnResponseListener onResponseListener) {
-        mOnResponseListener = onResponseListener;
+    private NetworkHelper() {
+        mOkHttpClient = new OkHttpClient();
     }
 
-    /**
-     * 构造函数
-     */
-    public NetworkHelper() {
-        mClient = new OkHttpClient();
-        //mRequestQueue = Volley.newRequestQueue(App.get());
+    public static NetworkHelper getInstance() {
+        synchronized (NetworkHelper.class) {
+            if (sInstance == null) {
+                sInstance = new NetworkHelper();
+            }
+        }
+        return sInstance;
     }
+
+    private RequestBase mRequestBase;
+
+    /**
+     * @param requestBase
+     * @param responseBase
+     */
+    public void call(RequestBase requestBase, ResponseBase responseBase) {
+
+    }
+
+
+    //================================================
+    // Get Method
+    //================================================
 
     /**
      * get方法
      */
-    public void get(final String url) {
+    public void get(RequestBase requestBase, ResponseBase responseBase) {
 
         try {
-            Request request = new Request.Builder()
-                    .url(url)
-                    .build();
-            Response response = mClient.newCall(request).execute();
-            response.body().string();
+
+            Request.Builder builder = new Request.Builder();
+            builder.url(requestBase.getRealUrl());
+
+            Request request = builder.build();
+
+            Response response = mOkHttpClient.newCall(request).execute();
+
+            String responseStr = response.body().string();
+
+            responseBase.translateResponse(responseStr);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-//        VolleyGetRequest stringRequest = new VolleyGetRequest(Request.Method.GET, url,
-//                new Response.Listener() {
-//                    @Override
-//                    public void onResponse(Object response) {
-//                        LogUtils.JSON(String.valueOf(response));
-//                    }
-//
-//
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                onResponseError(error.networkResponse.statusCode, error.getMessage());
-//            }
-//        });
-//        mRequestQueue.add(stringRequest);
     }
+
+    //================================================
+    // Post Method
+    //================================================
 
     /**
      * post方法
      */
     public void postString(final String url, final Map<String, String> params) {
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        onResponseSuccess(response);
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                onResponseError(error.networkResponse.statusCode, error.getMessage());
-//            }
-//        }) {
-//            @Override
-//            protected Map<String, String> getParams() {
-//                return params;
-//            }
-//        };
-//        mRequestQueue.add(stringRequest);
+
     }
 
-    private void onResponseSuccess(Object object) {
-        LogUtils.JSON(String.valueOf(object));
+//    private void onResponseSuccess(Object object) {
+//        LogUtils.JSON(String.valueOf(object));
+//
+//        if (mOnResponseListener != null) {
+//            mOnResponseListener.onResponseSuccess(object);
+//        }
+//    }
 
-        if (mOnResponseListener != null) {
-            mOnResponseListener.onResponseSuccess(object);
-        }
-    }
-
-    private void onResponseError(int code, String message) {
-        LogUtils.E("onResponseError=code=" + code + " message=" + message);
-        if (mOnResponseListener != null) {
-            mOnResponseListener.onResponseError(code, message);
-        }
-    }
+//    private void onResponseError(int code, String message) {
+//        LogUtils.E("onResponseError=code=" + code + " message=" + message);
+//        if (mOnResponseListener != null) {
+//            mOnResponseListener.onResponseError(code, message);
+//        }
+//    }
 
 
 }

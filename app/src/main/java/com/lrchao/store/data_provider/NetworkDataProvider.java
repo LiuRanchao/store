@@ -91,8 +91,8 @@ public abstract class NetworkDataProvider implements BaseDataProvider, OnRespons
 
 
     public NetworkDataProvider() {
-        mVolleyHelper = new NetworkHelper();
-        mVolleyHelper.setOnResponseListener(this);
+       // mVolleyHelper = new NetworkHelper();
+       // mVolleyHelper.setOnResponseListener(this);
 
         // 初始化request
         initRequest(getRequestMethod());
@@ -133,7 +133,7 @@ public abstract class NetworkDataProvider implements BaseDataProvider, OnRespons
         if (getRequestMethod() == RequestMethod.POST) {
             mVolleyHelper.postString(realUrl, mRequest.getRealParams());
         } else {
-            mVolleyHelper.get(realUrl);
+            //mVolleyHelper.get(realUrl);
         }
     }
 
