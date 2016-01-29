@@ -131,6 +131,8 @@ public class MainActivity extends BaseActivity
             switchContent(mMovieFragment, mBookShelfFragment, null, R.id.fragment_container);
         } else if (id == R.id.nav_movie) {
             switchContent(mBookShelfFragment, mMovieFragment, null, R.id.fragment_container);
+            setTheme(R.style.AppTheme_NoActionBarRed);
+
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
         }

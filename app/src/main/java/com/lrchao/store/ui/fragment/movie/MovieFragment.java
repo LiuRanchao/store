@@ -40,6 +40,8 @@ public class MovieFragment extends BaseNetworkFragment {
         UserDataProvider provider = new UserDataProvider();
         //provider.load();
 
+
+
     }
 
     @Override

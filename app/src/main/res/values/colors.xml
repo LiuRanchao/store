@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+
+    <!-- 蓝色的主题 -->
+    <color name="colorPrimaryBlue">#3F51B5</color>
+    <color name="colorPrimaryDarkBlue">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    
+
+    <!-- 红色的主题 -->
+    <color name="colorPrimaryRed">#f04448</color>
+    <color name="colorPrimaryDarkRed">#d9483d</color>
+
+
     <!-- 白色 -->
     <color name="bai_FFFFFF">#FFFFFF</color>
 
