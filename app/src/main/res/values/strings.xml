@@ -17,7 +17,9 @@
     <!-- 导航拦-->
     <string name="login_or_register">登录or注册</string>
     <string name="nav_book_shelf">本地在读</string>
-    <string name="nav_store">作品商店</string>
+    <string name="nav_movie">影视</string>
+
+
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
 </resources>

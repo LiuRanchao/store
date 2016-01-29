@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.lrchao.store.R;
 import com.lrchao.store.ui.fragment.BookShelfFragment;
-import com.lrchao.store.ui.fragment.StoreFragment;
+import com.lrchao.store.ui.fragment.MovieFragment;
 import com.lrchao.store.ui.widget.NavigationHeaderView;
 
 import butterknife.Bind;
@@ -54,16 +54,15 @@ public class MainActivity extends BaseActivity
     private BookShelfFragment mBookShelfFragment;
 
     /**
-     * 商城的fragment
+     * 影视的fragment
      */
-    private StoreFragment mStoreFragment;
+    private MovieFragment mMovieFragment;
 
 
     @Override
     protected void initView() {
-        mBookShelfFragment = new BookShelfFragment();
-        mStoreFragment = new StoreFragment();
-        switchContent(mBookShelfFragment, mStoreFragment, null, R.id.fragment_container);
+
+        initFragment();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, getToolbar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -78,6 +77,16 @@ public class MainActivity extends BaseActivity
         navigationHeaderView.bindView();
 
         initFloatingActionButton();
+    }
+
+    /**
+     * 初始化fragment
+     */
+    private void initFragment(){
+        mBookShelfFragment = new BookShelfFragment();
+        mMovieFragment = new MovieFragment();
+
+        showFragment(mBookShelfFragment);
     }
 
     @Override
@@ -119,9 +128,9 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_book_shelf) {
-            switchContent(mStoreFragment, mBookShelfFragment, null, R.id.fragment_container);
-        } else if (id == R.id.nav_store) {
-            switchContent(mBookShelfFragment, mStoreFragment, null, R.id.fragment_container);
+            switchContent(mMovieFragment, mBookShelfFragment, null, R.id.fragment_container);
+        } else if (id == R.id.nav_movie) {
+            switchContent(mBookShelfFragment, mMovieFragment, null, R.id.fragment_container);
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
         }

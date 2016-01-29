@@ -10,17 +10,17 @@ import com.lrchao.store.ui.activity.SettingsActivity;
 
 
 /**
- * Description: TODO
+ * Description: 影视的fragment
  *
  * @author liuranchao
  * @date 15/12/23 下午4:19
  */
-public class StoreFragment extends BaseNetworkFragment{
+public class MovieFragment extends BaseNetworkFragment {
 
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_store;
+        return R.layout.fragment_movie;
     }
 
     @Override
