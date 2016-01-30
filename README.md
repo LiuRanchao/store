@@ -15,8 +15,9 @@
  - greendao
  
 ###问题：
- - 首页的NavigationView上的颜色
+ - 首页的NavigationView上的颜色，被window的status bar盖住了
  - response使用泛型，省着每次都转型
+ - 
  
  
 ###命名：

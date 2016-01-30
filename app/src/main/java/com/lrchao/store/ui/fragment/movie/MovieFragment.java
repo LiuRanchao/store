@@ -1,8 +1,6 @@
 package com.lrchao.store.ui.fragment.movie;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.lrchao.store.R;
@@ -39,8 +37,6 @@ public class MovieFragment extends BaseNetworkFragment {
 
         UserDataProvider provider = new UserDataProvider();
         //provider.load();
-
-
 
     }
 

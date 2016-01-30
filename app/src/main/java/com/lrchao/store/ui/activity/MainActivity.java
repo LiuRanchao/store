@@ -14,6 +14,7 @@ import com.lrchao.store.R;
 import com.lrchao.store.ui.fragment.BookShelfFragment;
 import com.lrchao.store.ui.fragment.movie.MovieFragment;
 import com.lrchao.store.ui.widget.NavigationHeaderView;
+import com.lrchao.store.util.WindowUtils;
 
 import butterknife.Bind;
 
@@ -61,7 +62,6 @@ public class MainActivity extends BaseActivity
 
     @Override
     protected void initView() {
-
         initFragment();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -82,7 +82,7 @@ public class MainActivity extends BaseActivity
     /**
      * 初始化fragment
      */
-    private void initFragment(){
+    private void initFragment() {
         mBookShelfFragment = new BookShelfFragment();
         mMovieFragment = new MovieFragment();
 
@@ -128,17 +128,27 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_book_shelf) {
+            setToolbarAndStatusBar(R.color.colorPrimaryDarkBlue, R.string.app_name, R.color.colorPrimaryBlue);
             switchContent(mMovieFragment, mBookShelfFragment, null, R.id.fragment_container);
         } else if (id == R.id.nav_movie) {
+            setToolbarAndStatusBar(R.color.colorPrimaryDarkRed, R.string.nav_movie, R.color.colorPrimaryRed);
             switchContent(mBookShelfFragment, mMovieFragment, null, R.id.fragment_container);
-            setTheme(R.style.AppTheme_NoActionBarRed);
-
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
         }
-
         mDrawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * 设置status bar and toolbar
+     */
+    private void setToolbarAndStatusBar(int statusBarColor, int toolbarTitle, int toolbarColor) {
+
+        WindowUtils.setStatusBarColor(this, statusBarColor);
+        setToolbarTitle(toolbarTitle);
+        setToolbarColor(toolbarColor);
+
     }
 
 }

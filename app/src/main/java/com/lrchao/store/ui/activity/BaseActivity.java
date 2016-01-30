@@ -2,6 +2,7 @@ package com.lrchao.store.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -171,6 +172,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void setToolbarTitle(int resId) {
         if (mToolbar != null) {
             mToolbar.setTitle(resId);
+        }
+    }
+
+    /**
+     * 设置toolbar的背景色
+     * @param colorResId colors.xml
+     */
+    protected void setToolbarColor(int colorResId) {
+        if (mToolbar != null) {
+            mToolbar.setBackgroundResource(colorResId);
         }
     }
 
