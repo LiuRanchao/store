@@ -24,4 +24,5 @@
 layout:
  - view_：表示直接可以引用的view布局
  - layout_:表示view中inflate加载的布局
+ - adapter_:表示Adapter的item的布局
  

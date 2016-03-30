@@ -1,11 +1,12 @@
 package com.lrchao.store.net;
 
 
-import com.lrchao.store.net.response.ResponseBase;
+import com.lrchao.store.exception.InitializationException;
+import com.lrchao.store.net.resquest.PostRequest;
 import com.lrchao.store.net.resquest.RequestBase;
+import com.lrchao.store.util.LogUtils;
 
 import java.io.IOException;
-import java.util.Map;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -40,70 +41,39 @@ public class NetworkHelper {
         return sInstance;
     }
 
-    private RequestBase mRequestBase;
-
-    /**
-     * @param requestBase
-     * @param responseBase
-     */
-    public void call(RequestBase requestBase, ResponseBase responseBase) {
-
-    }
-
-
     //================================================
-    // Get Method
+    // 实际调用OKHttp库
     //================================================
 
     /**
      * get方法
      */
-    public void get(RequestBase requestBase, ResponseBase responseBase) {
+    public void realCall(RequestBase requestBase, ResponseStatus responseStatus) {
+
+        if (requestBase == null || responseStatus == null) {
+            throw new InitializationException("RequestBase or responseStatus must be not null");
+        }
 
         try {
-
             Request.Builder builder = new Request.Builder();
+            // 设置url
             builder.url(requestBase.getRealUrl());
+            // 设置body
+            if (requestBase instanceof PostRequest) {
+                PostRequest postRequest = (PostRequest) requestBase;
+                builder.post(postRequest.getRequestBody());
+            }
 
             Request request = builder.build();
 
             Response response = mOkHttpClient.newCall(request).execute();
 
-            String responseStr = response.body().string();
-
-            responseBase.translateResponse(responseStr);
+            responseStatus.onResponseSuccess(response.body().string());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
-    //================================================
-    // Post Method
-    //================================================
-
-    /**
-     * post方法
-     */
-    public void postString(final String url, final Map<String, String> params) {
-
-    }
-
-//    private void onResponseSuccess(Object object) {
-//        LogUtils.JSON(String.valueOf(object));
-//
-//        if (mOnResponseListener != null) {
-//            mOnResponseListener.onResponseSuccess(object);
-//        }
-//    }
-
-//    private void onResponseError(int code, String message) {
-//        LogUtils.E("onResponseError=code=" + code + " message=" + message);
-//        if (mOnResponseListener != null) {
-//            mOnResponseListener.onResponseError(code, message);
-//        }
-//    }
-
 
 }

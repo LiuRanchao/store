@@ -1,6 +1,7 @@
 package com.lrchao.store.request_handler.movie;
 
 
+import com.lrchao.store.model.movie.in_theaters.InTheatersModel;
 import com.lrchao.store.net.APIConstants;
 import com.lrchao.store.net.resquest.RequestMethod;
 import com.lrchao.store.request_handler.RequestHandler;
@@ -22,6 +23,17 @@ public class MovieInTheatersRH extends RequestHandler {
     protected String bindRequestURL() {
         return APIConstants.DOUBAN_API_HOST + "v2/movie/in_theaters";
     }
+
+    @Override
+    protected Class getJsonClass() {
+        return InTheatersModel.class;
+    }
+
+    @Override
+    protected void onSuccess(Object obj) {
+        InTheatersModel inTheatersModel = (InTheatersModel) obj;
+    }
+
 
 
 }

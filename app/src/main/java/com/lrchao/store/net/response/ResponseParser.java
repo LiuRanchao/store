@@ -6,12 +6,12 @@ package com.lrchao.store.net.response;
  * @author liuranchao
  * @date 15/12/22 上午10:49
  */
-public interface ResponseBase {
+public interface ResponseParser {
 
     /**
      * 将返回值转换成对应的数据
      * @param response  Object
      */
-    Object translateResponse(Object response);
+    Object parse(String response);
 
 }

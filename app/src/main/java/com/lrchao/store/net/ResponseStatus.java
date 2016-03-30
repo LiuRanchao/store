@@ -1,4 +1,4 @@
-package com.lrchao.store.net.response;
+package com.lrchao.store.net;
 
 /**
  * Description: 请求响应回调接口
@@ -6,13 +6,13 @@ package com.lrchao.store.net.response;
  * @author liuranchao
  * @date 16/1/6 下午4:00
  */
-public interface OnResponseListener {
+public interface ResponseStatus {
 
     /**
      * 请求成功回调
      * @param object 对象
      */
-    void onResponseSuccess(Object object);
+    void onResponseSuccess(String object);
 
     /**
      * 请求失败

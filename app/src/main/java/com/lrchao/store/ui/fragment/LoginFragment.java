@@ -71,9 +71,9 @@ public class LoginFragment extends BaseWebViewFragment {
         }
     }
 
-    @Override
-    protected NetworkDataProvider initDataProvider() {
-        mProvider = new LoginDataProvider();
-        return mProvider;
-    }
+//    @Override
+//    protected NetworkDataProvider initDataProvider() {
+//        mProvider = new LoginDataProvider();
+//        return mProvider;
+//    }
 }

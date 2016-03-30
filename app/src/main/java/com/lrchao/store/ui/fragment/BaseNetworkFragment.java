@@ -16,22 +16,19 @@ import com.lrchao.store.service.RequestService;
  */
 public abstract class BaseNetworkFragment extends BaseFragment {
 
-    protected NetworkDataProvider mDataProvider;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mDataProvider = initDataProvider();
 
-        if (mDataProvider == null) {
-           // finishActivity();
-        }
-
-        //mDataProvider.setOnLoadListener();
-
-
+        initRequest();
         doLoadData();
+
+    }
+
+    private void initRequest() {
+
 
     }
 
@@ -57,12 +54,6 @@ public abstract class BaseNetworkFragment extends BaseFragment {
     }
 
 
-    /**
-     * 初始化DataProvider
-     *
-     * @return BaseDataProvider
-     */
-    protected abstract NetworkDataProvider initDataProvider();
 
 
      protected void onLoadStart() {

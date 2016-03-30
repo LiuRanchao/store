@@ -2,9 +2,9 @@ package com.lrchao.store.data_provider;
 
 
 import com.lrchao.store.net.NetworkHelper;
-import com.lrchao.store.net.response.JsonResponse;
-import com.lrchao.store.net.response.OnResponseListener;
-import com.lrchao.store.net.response.ResponseBase;
+import com.lrchao.store.net.response.JsonResponseParser;
+import com.lrchao.store.net.ResponseStatus;
+import com.lrchao.store.net.response.ResponseParser;
 import com.lrchao.store.net.response.ResponseType;
 import com.lrchao.store.net.resquest.GetRequest;
 import com.lrchao.store.net.resquest.PostRequest;
@@ -20,7 +20,7 @@ import java.util.Map;
  * @author liuranchao
  * @date 15/11/23 上午10:46
  */
-public abstract class NetworkDataProvider implements BaseDataProvider, OnResponseListener {
+public abstract class NetworkDataProvider implements BaseDataProvider, ResponseStatus {
 
     /**
      * VolleyHelper实际发请求对象
@@ -40,7 +40,7 @@ public abstract class NetworkDataProvider implements BaseDataProvider, OnRespons
     /**
      * 响应对象
      */
-    protected ResponseBase mResponse;
+    protected ResponseParser mResponse;
 
     /**
      * 设置URL
@@ -85,8 +85,8 @@ public abstract class NetworkDataProvider implements BaseDataProvider, OnRespons
      * 设置
      */
     private void setJsonResponseClass() {
-        JsonResponse jsonResponse = (JsonResponse) mResponse;
-        jsonResponse.setClazz(getJSONResponseClass());
+        JsonResponseParser jsonResponse = (JsonResponseParser) mResponse;
+      //  jsonResponse.setClazz(getJSONResponseClass());
     }
 
 
@@ -106,7 +106,7 @@ public abstract class NetworkDataProvider implements BaseDataProvider, OnRespons
         switch (getResponseType()) {
             case ResponseType.JSON:
             default:
-                mResponse = new JsonResponse();
+                //mResponse = new JsonResponseParser();
                 setJsonResponseClass();
                 break;
         }
@@ -131,7 +131,7 @@ public abstract class NetworkDataProvider implements BaseDataProvider, OnRespons
         String realUrl = mRequest.getRealUrl();
 
         if (getRequestMethod() == RequestMethod.POST) {
-            mVolleyHelper.postString(realUrl, mRequest.getRealParams());
+           // mVolleyHelper.postString(realUrl, mRequest.getRealParams());
         } else {
             //mVolleyHelper.get(realUrl);
         }
@@ -155,8 +155,8 @@ public abstract class NetworkDataProvider implements BaseDataProvider, OnRespons
 
 
     @Override
-    public void onResponseSuccess(Object object) {
-        Object responseObj = mResponse.translateResponse(object);
+    public void onResponseSuccess(String responseStr) {
+        Object responseObj = mResponse.parse(responseStr);
         onResponse(responseObj);
     }
 
